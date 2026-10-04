@@ -1,0 +1,12 @@
+{
+  "name": "@local/dsh-pueh-cowork-preset",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pueh Cowork agent preset: Pueh Chat plus workspace files, skills and background subagents",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

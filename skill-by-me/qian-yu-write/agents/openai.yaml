@@ -1,0 +1,7 @@
+interface:
+  display_name: "Qian Yu Write"
+  short_description: "已有草稿的分析、结构检查、批评与定稿"
+  default_prompt: "使用 $qian-yu-write 帮我分析、检查并修订这份已有草稿。"
+
+policy:
+  allow_implicit_invocation: false

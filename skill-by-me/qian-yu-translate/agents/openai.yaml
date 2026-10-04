@@ -1,0 +1,6 @@
+interface:
+  display_name: "Qian Yu Translate"
+  short_description: "中文翻译成自然、克制、非母语感的英语，以及审校和润色已有英文译文"
+  default_prompt: "使用 $qian-yu-translate 帮我把这段中文翻译成英语。"
+policy:
+  allow_implicit_invocation: false

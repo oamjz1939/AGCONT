@@ -1,0 +1,55 @@
+# Pueh Chat (pueh-chat) — migrated from the legacy
+# `~/.dsh/.agent-presets/pueh-chat/` directory to an installed bundle
+# declaration, because nothing reads the legacy directory any more.
+#
+# Minimal system prompt (one sentence, complete), no filesystem or shell tools.
+# The model can only ask the user clarifying questions and search the web.
+# Automatic compaction plus the manual /compact command keep long conversations
+# within context.
+- insert:
+    - id: preset-pueh-chat
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: pueh-chat
+        name: Pueh Chat
+        description: '最少提示词，可反问与联网搜索，无文件系统访问。'
+        order: 5
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: You are a helpful assistant.
+              complete: true
+              includeRuntimeContext: false
+
+          - id: tool-ask-user
+            name: '@deepseek-ai/dsh-tool-ask-user'
+
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: false
+              searchTimeoutMs: 60000
+
+          # Compaction lives in an entry-local realm exactly like the shipped
+          # `standard` preset: the backend registers per-agent while the host
+          # token meter stays global.
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+              toolResultPruner: true
+            config:
+              - id: compaction-basic
+                name: '@deepseek-ai/dsh-compaction-basic'
+
+              - id: command-compact
+                name: '@deepseek-ai/dsh-command-compact'
+
+              - id: tool-result-pruner
+                name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+                config:
+                  thresholdChars: 8192
+                  headChars: 4096
+                  tailChars: 1024

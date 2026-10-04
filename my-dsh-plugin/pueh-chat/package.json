@@ -1,0 +1,12 @@
+{
+  "name": "@local/dsh-pueh-chat-preset",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pueh Chat agent preset: minimal prompt, ask-user and web search only",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
